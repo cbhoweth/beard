@@ -1,24 +1,16 @@
-// Gulp Requires
-var gulp = require('gulp'),
-    gutil = require('gulp-util'),
-    autoprefixer = require('gulp-autoprefixer'),
-    sass = require('gulp-sass'),
-    minifycss = require('gulp-minify-css');
+var elixir = require('laravel-elixir');
 
-// Directories
-var DIST = 'dist/';
+/*
+ |--------------------------------------------------------------------------
+ | Elixir Asset Management
+ |--------------------------------------------------------------------------
+ |
+ | Elixir provides a clean, fluent API for defining some basic Gulp tasks
+ | for your Laravel application. By default, we are compiling the Less
+ | file for our application, as well as publishing vendor resources.
+ |
+ */
 
-// SCSS Compiling and Minification
-gulp.task('sass', function() {
-    return gulp.src('beard.scss')
-        .pipe(sass({
-            debugInfo: false,
-            lineNumbers: false
-        }))
-        .pipe(autoprefixer('last 2 version'))
-        .pipe(minifycss())
-        .pipe(gulp.dest(DIST));
+elixir(function(mix) {
+    mix.sass('app.scss');
 });
-
-// Gulp Default Task
-gulp.task('default', ['sass']);
